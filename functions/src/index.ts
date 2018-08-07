@@ -10,10 +10,7 @@ const app = dialogflow({
 
 
 app.intent("jokes", conv => {
-    // const appliances: string[] = conv.parameters[''];
-    // const numberOfAppliances: number[] = conv.parameters[''];
-    
-    return conv.close(`new BasicCard({
+    conv.ask(`new BasicCard({
         image: new image({
           url: 'https://i.imgur.com/Ynn2QZa.png',
           alt: 'GU Memes',
