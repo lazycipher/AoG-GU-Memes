@@ -4,7 +4,7 @@ const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 admin.initializeApp();
 const db = admin.database();
-const { dialogflow, BasicCard, SimpleResponse } = require('actions-on-google');
+const { dialogflow, Image, SimpleResponse } = require('actions-on-google');
 const app = dialogflow({
     debug: true
 });
@@ -19,15 +19,16 @@ app.intent("memes", conv => {
         let imageUrl = data[random];
         //returns data to AoG App
         conv.ask(new SimpleResponse({
-            speech: 'Here is the Meme of the week For Galgotias University',
-            text: 'Here is the Meme of the week For Galgotias University',
+            speech: 'Here you go!',
+            text: 'Here is one of the best meme!',
         }));
-        conv.ask(new BasicCard({
-            image: {
-                url: `${imageUrl}`,
-                accessibilityText: 'GU Memes',
-            },
-            display: 'WHITE',
+        conv.ask(new Image({
+            url: `${imageUrl}`,
+            alt: 'GU Memes'
+        }));
+        conv.close(new SimpleResponse({
+            speech: 'Like Two Bros in Galgotias for more Fun!. Keep Rocking. Ping me back when you need to laugh! again.',
+            text: 'Src: Two Bros in Galgotias',
         }));
     });
 });
